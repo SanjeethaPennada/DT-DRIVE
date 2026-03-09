@@ -34,10 +34,6 @@ Ubuntu 20.04+
 CARLA 0.9.10.1
 conda
 ```
-Install the required packages using:
-```
-pip install -r requirements.txt
-```
 # DET-DRIVE TOOL 
 
 # Testing the Determinism of ADS using DET-DRIVE (Application)
@@ -117,6 +113,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
