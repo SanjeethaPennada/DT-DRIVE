@@ -103,7 +103,7 @@ conda activate garage
 ./scripts/DETDRIVE_REPLICATE.sh
 ```
 ## Results
-The 'notebooks' directory has the scripts to load the evaluation data and generate figures used in the paper. This directory contains the data as well as notebooks to generate figures used in the paper.
+The 'notebooks' directory has the scripts to load the evaluation data and generate figures used in the paper.
 
 ## Funding
 This research was funded by the Engineering and Physical Sciences Research Council (EPSRC) through UK Research and Innovation (Project Reference: EP/Y014219/1)
@@ -117,6 +117,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
