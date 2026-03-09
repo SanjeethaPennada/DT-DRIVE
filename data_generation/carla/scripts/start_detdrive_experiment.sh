@@ -34,5 +34,5 @@ export DATAGEN=0
 export UNCERTAINTY_THRESHOLD=0.33
 
 
-python3 ${WORK_DIR}/multifidelity-tools/experiment_runner.py $@
-echo "Bye from script!"
+python3 ${WORK_DIR}/multifidelity-tools/detdrive_runner.py $@
+echo "DET-Drive successfully finished"
