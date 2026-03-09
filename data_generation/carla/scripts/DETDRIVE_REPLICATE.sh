@@ -8,7 +8,7 @@ mkdir -p data-bucket/
 ./scripts/clean_results.sh
 
 # repetitions
-for i in $(seq 0 10)
+for i in $(seq 0 5)
 do
     export REP=$i
 
