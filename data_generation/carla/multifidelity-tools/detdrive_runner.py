@@ -35,7 +35,7 @@ FPS = 20
 
 
 # ---------------------------------------------------
-# Mapping replay → subset
+# Mapping replay and subset
 # ---------------------------------------------------
 
 REPLAY_ROUTE_MAP = {
