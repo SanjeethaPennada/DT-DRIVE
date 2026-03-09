@@ -119,13 +119,14 @@ This research was funded by the Engineering and Physical Sciences Research Counc
 
 ## Acknowledgements
 This implementation is based on code from several repositories. We sincerely thank the authors for their awesome work.
-- [REcord and REplay with MOdifications (REMOv0.1) TOOL](https://github.com/SanjeethaPennada/REMO](https://github.com/SanjeethaPennada/REMO-v0.1))
-- [REcord and REplay with MOdifications (REMO) TOOL](https://github.com/RSE-Sheffield/REMO)
-- [FLAKINESS STUDY](https://github.com/dotchen/LearningByCheating](https://figshare.com/s/36510668ad05ffa8c0bd?file=50369490)
-- [CARLA GARAGE](https://github.com/dotchen/WorldOnRails](https://github.com/autonomousvision/carla_garage)
+- [Record and Replay with Modifications version 0.1 (REMO_v0.1) TOOL](https://github.com/SanjeethaPennada/REMO-v0.1)
+- [Record and Replay with Modifications version 1.0 (REMO_v1.0) TOOL](https://github.com/RSE-Sheffield/REMO)
+- [Flakiness Study](https://figshare.com/s/36510668ad05ffa8c0bd?file=50369490)
+- [CARLA Garage](https://github.com/autonomousvision/carla_garage)
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
