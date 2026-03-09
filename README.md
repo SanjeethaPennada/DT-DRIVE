@@ -6,6 +6,7 @@
 
 DET-DRIVE is a framework for evaluating Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based evaluation by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). 
 This repository contains scripts and tools to:
+
 • generate replay logs of flaky scenarios in CARLA  
 • evaluate ADS in deterministic replay environments using DET-DRIVE  
 • reproduce the experimental results presented in the paper
@@ -126,6 +127,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
