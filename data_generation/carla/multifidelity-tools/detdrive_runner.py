@@ -1,4 +1,4 @@
-#DET-DRIVE
+#DT-DRIVE
 
 import carla
 import importlib
@@ -28,17 +28,16 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 ROUTE_FILE = str(BASE_DIR / "data/routes/routes_devtest_sliced.xml")
 SCENARIO_FILE = str(BASE_DIR / "scenario_runner/srunner/data/no_scenarios.json")
 rep = int(os.environ.get("REP", 0))
-REPLAY_DIR = str(
-    BASE_DIR / f"flaky-data-bucket/rep{rep}/record/fps_20_highquality_True"
-)
+REPLAY_DIR = str(BASE_DIR / "flaky-data-bucket/rep1/record/fps_20_highquality_True")
 
 #FPS 
 FPS = 20
 
 
 
+
 # ---------------------------------------------------
-# Mapping replay → subset
+# Mapping replay and subset
 # ---------------------------------------------------
 
 #"RouteScenario_0_rep0.log": "0", "RouteScenario_1_rep0.log": "1", "RouteScenario_2_rep0.log": "2", "RouteScenario_4_rep0.log": "4", "RouteScenario_6_rep0.log": "6", "RouteScenario_7_rep0.log": "7","RouteScenario_8_rep0.log": "8", 
@@ -51,8 +50,8 @@ FPS = 20
 #"RouteScenario_130_rep0.log": "130"
 
 REPLAY_ROUTE_MAP = {
-  
-    "RouteScenario_61_rep0.log": "61"
+
+    "RouteScenario_8_rep0.log": "8"
 
 }
 
@@ -396,7 +395,7 @@ class ReplayADSRunner:
 
 
 # ---------------------------------------------------
-# Evaluation results - irectory preparation
+# Evaluation results - directory preparation
 # ---------------------------------------------------
 
 def prepare_run_dirs(rep):
@@ -429,6 +428,7 @@ def main():
 
     rep = int(os.environ.get("REP", 0))
     dirs = prepare_run_dirs(rep)
+
 
     initialize_checkpoint(dirs["checkpoint"])
 
