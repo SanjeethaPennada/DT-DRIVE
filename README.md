@@ -1,6 +1,4 @@
-# DET-DRIVE: A Tool for Deterministic Replay-Based Evaluation of Autonomous Driving Systems 
-# (or)
-# DET-Drive: A Deterministic Replay Framework for Evaluating Autonomous Driving Systems in CARLA
+# DET-DRIVE: A Tool for Deterministic Replay-Based Testing of Autonomous Driving Systems 
 
 (Submitted to ICST 2026 (under review))
 
@@ -127,6 +125,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
