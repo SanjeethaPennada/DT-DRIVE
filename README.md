@@ -18,7 +18,7 @@ DET-DRIVE/
 │  │  │  ├─ record/          # Recorded CARLA Replay logs of flaky scenarios 
 │  │  ├─ scripts/
 │  │  │  ├─ REPLICATE.sh/    # Generates replay logs of flaky scenarios
-│  │  │  ├─ DETDRIVE.sh/     # Run deterministic evaluation
+│  │  │  ├─ DETDRIVE_REPLICATE.sh/     # Run deterministic evaluation
 ├─ results/
 │  ├─ carla/
 │  │  ├─ data/
@@ -40,16 +40,8 @@ pip install -r requirements.txt
 ```
 # Contents
 
-## 1. Recording Replay Logs for Flaky Scenarios
-The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios.
-
-## 2. CARLA
-The script: 'REPLICATE.sh' runs **TransFuser++** on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions.
-For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. 
-
-## 3. Deterministic Evaluation with DET-DRIVE
-The script: 'DETDRIVE.sh' runs DET-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios.
-During evaluation:
+## Testing of Determinism with DET-DRIVE (Application)
+The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs **TransFuser++** on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DETDRIVE_REPLICATE.sh' runs DET-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
 1. A CARLA replay log is loaded.
 2. The original ego vehicle is removed.
 3. The ADS under test is attached as the new ego agent.
@@ -125,6 +117,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
