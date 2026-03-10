@@ -15,7 +15,7 @@ DT-DRIVE/
 │  │  │  ├─ record/          # Recorded CARLA Replay logs of flaky scenarios 
 │  │  ├─ scripts/
 │  │  │  ├─ REPLICATE.sh/    # Generates replay logs of flaky scenarios
-│  │  │  ├─ DETDRIVE_REPLICATE.sh/     # Run deterministic evaluation
+│  │  │  ├─ DTDRIVE_REPLICATE.sh/     # Run deterministic evaluation
 ├─ results/
 │  ├─ carla/
 │  │  ├─ data/
@@ -35,7 +35,7 @@ conda
 (Pending) 
 
 # Testing the Determinism of ADS using DT-DRIVE (Application)
-The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs **TransFuser++** on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DETDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
+The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs **TransFuser++** on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DTDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
 1. A CARLA replay log is loaded.
 2. The original ego vehicle is removed.
 3. The ADS under test is attached as the new ego agent.
@@ -44,9 +44,9 @@ This enables consistent and reproducible evaluation across multiple runs.
 The following pipeline illustrates how DT-DRIVE evaluates an autonomous driving system in a deterministic replay environment.
 
 ```
-  Recorded Replay Logs
-         │
-         ▼
+   Recorded Replay Logs
+            │
+            ▼
 ┌─────────────────────────┐
 │   REMO Replay Loader    │
 └───────────┬─────────────┘
@@ -94,7 +94,7 @@ conda activate garage
 ./scripts/REPLICATE.sh
 
 # Run DT-DRIVE deterministic evaluation
-./scripts/DETDRIVE_REPLICATE.sh
+./scripts/DTDRIVE_REPLICATE.sh
 ```
 ## Results
 The 'notebooks' directory has the scripts to load the evaluation data and generate figures used in the paper.
@@ -111,6 +111,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
