@@ -277,7 +277,7 @@ class ReplayADSRunner:
                 continue
 
             try:
-                print("Destroying:", actor.id, actor.type_id)
+               
                 actor.destroy()
             except:
                 pass
