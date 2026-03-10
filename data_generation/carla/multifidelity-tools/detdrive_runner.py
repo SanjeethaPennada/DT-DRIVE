@@ -51,7 +51,7 @@ FPS = 20
 
 REPLAY_ROUTE_MAP = {
 
-    "RouteScenario_8_rep0.log": "8"  #nondeterministic scenario according to flakiness pape
+    "RouteScenario_8_rep0.log": "8"  #nondeterministic scenario according to flakiness paper 
 
 }
 
@@ -83,9 +83,7 @@ def get_town_for_route(route_file, route_id):
 def initialize_checkpoint(path):
 
     data = None
-    changed = False
 
-    # load existing checkpoint if it exists
     if os.path.exists(path):
         try:
             with open(path, "r") as f:
@@ -93,39 +91,29 @@ def initialize_checkpoint(path):
         except:
             data = None
 
-    # create checkpoint if missing
     if not data or "_checkpoint" not in data:
         data = {
             "_checkpoint": {
                 "global_record": {},
-                "progress": [0, len(REPLAY_ROUTE_MAP)],
+                "progress": [0, 1],
                 "records": []
             }
         }
-        changed = True
-
-    cp = data["_checkpoint"]
 
     # guarantee required fields
+    cp = data["_checkpoint"]
+
     if "progress" not in cp or len(cp["progress"]) < 2:
-        cp["progress"] = [0, len(REPLAY_ROUTE_MAP)]
-        changed = True
+        cp["progress"] = [0, 1]
 
     if "records" not in cp:
         cp["records"] = []
-        changed = True
 
     if "global_record" not in cp:
         cp["global_record"] = {}
-        changed = True
 
-    # write only if something changed
-    if changed:
-        print("Initializing / repairing checkpoint:", path)
-        with open(path, "w") as f:
-            json.dump(data, f, indent=4)
-    else:
-        print("Checkpoint already valid:", path)
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
 
 # ---------------------------------------------------
 # runner
@@ -167,7 +155,7 @@ class ReplayADSRunner:
         self.client.reload_world()
         self.world = self.client.get_world()
 
-        # apply deterministic settings
+        # apply deterministic settings 
         settings = self.world.get_settings()
         settings.synchronous_mode = True
         settings.fixed_delta_seconds = 1.0 / FPS
