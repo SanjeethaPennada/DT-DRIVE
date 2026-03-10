@@ -40,18 +40,15 @@ FPS = 20
 # Mapping replay and subset
 # ---------------------------------------------------
 
-#"RouteScenario_0_rep0.log": "0", "RouteScenario_1_rep0.log": "1", "RouteScenario_2_rep0.log": "2", "RouteScenario_4_rep0.log": "4", "RouteScenario_6_rep0.log": "6", "RouteScenario_7_rep0.log": "7","RouteScenario_8_rep0.log": "8", 
-#"RouteScenario_9_rep0.log": "9","RouteScenario_10_rep0.log": "10", "RouteScenario_12_rep0.log": "12",  "RouteScenario_15_rep0.log": "15", "RouteScenario_16_rep0.log": "16", "RouteScenario_17_rep0.log": "17", 
-#"RouteScenario_19_rep0.log": "19", "RouteScenario_20_rep0.log": "20","RouteScenario_21_rep0.log": "21", "RouteScenario_23_rep0.log": "23", "RouteScenario_25_rep0.log": "25", "RouteScenario_27_rep0.log": "27",
-#"RouteScenario_29_rep0.log": "29","RouteScenario_32_rep0.log": "32","RouteScenario_36_rep0.log": "36", "RouteScenario_39_rep0.log": "39", "RouteScenario_40_rep0.log": "40", "RouteScenario_48_rep0.log": "48",
-#"RouteScenario_56_rep0.log": "56", "RouteScenario_61_rep0.log": "61", "RouteScenario_65_rep0.log": "65", "RouteScenario_73_rep0.log": "73",
-#"RouteScenario_80_rep0.log": "80", "RouteScenario_81_rep0.log": "81", "RouteScenario_82_rep0.log": "82", "RouteScenario_84_rep0.log": "84","RouteScenario_88_rep0.log": "88", "RouteScenario_89_rep0.log": "89","RouteScenario_90_rep0.log": "90",
-#"RouteScenario_95_rep0.log": "95",  "RouteScenario_96_rep0.log": "96", "RouteScenario_100_rep0.log": "100", "RouteScenario_105_rep0.log": "105", "RouteScenario_121_rep0.log": "121", "RouteScenario_124_rep0.log": "124",
-#"RouteScenario_130_rep0.log": "130"
+#"RouteScenario_0_rep0.log": "0", "RouteScenario_1_rep0.log": "1", "RouteScenario_2_rep0.log": "2", "RouteScenario_4_rep0.log": "4", "RouteScenario_6_rep0.log": "6", 
+#"RouteScenario_8_rep0.log": "8", "RouteScenario_9_rep0.log": "9", "RouteScenario_10_rep0.log": "10",  "RouteScenario_12_rep0.log": "12",   "RouteScenario_15_rep0.log": "15",  "RouteScenario_16_rep0.log": "16",
+#"RouteScenario_17_rep0.log": "17", "RouteScenario_19_rep0.log": "19",  "RouteScenario_20_rep0.log": "20", "RouteScenario_21_rep0.log": "21",  "RouteScenario_23_rep0.log": "23", 
+#"RouteScenario_25_rep0.log": "25", "
+#"RouteScenario_29_rep0.log": "29"
 
 REPLAY_ROUTE_MAP = {
 
-    "RouteScenario_8_rep0.log": "8"
+    "RouteScenario_8_rep0.log": "8" #most non-deterministic Scenario from flakiness study (example)
 
 }
 
