@@ -26,7 +26,7 @@ from leaderboard.envs.sensor_interface import SensorInterface
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 ROUTE_FILE = str(BASE_DIR / "data/routes/routes_devtest_sliced.xml")
-SCENARIO_FILE = str(BASE_DIR / "scenario_runner/srunner/data/no_scenarios.json")
+SCENARIO_FILE = str(BASE_DIR / "scenario_runner/srunner/data/all_towns_traffic_scenarios.json")
 rep = int(os.environ.get("REP", 0))
 REPLAY_DIR = str(BASE_DIR / "flaky-data-bucket/rep1/record/fps_20_highquality_True")
 
@@ -40,15 +40,18 @@ FPS = 20
 # Mapping replay and subset
 # ---------------------------------------------------
 
-#"RouteScenario_0_rep0.log": "0", "RouteScenario_1_rep0.log": "1", "RouteScenario_2_rep0.log": "2", "RouteScenario_4_rep0.log": "4", "RouteScenario_6_rep0.log": "6", 
-#"RouteScenario_8_rep0.log": "8", "RouteScenario_9_rep0.log": "9", "RouteScenario_10_rep0.log": "10",  "RouteScenario_12_rep0.log": "12",   "RouteScenario_15_rep0.log": "15",  "RouteScenario_16_rep0.log": "16",
-#"RouteScenario_17_rep0.log": "17", "RouteScenario_19_rep0.log": "19",  "RouteScenario_20_rep0.log": "20", "RouteScenario_21_rep0.log": "21",  "RouteScenario_23_rep0.log": "23", 
-#"RouteScenario_25_rep0.log": "25", "
-#"RouteScenario_29_rep0.log": "29"
+#"RouteScenario_0_rep0.log": "0", # "RouteScenario_1_rep0.log": "1", # "RouteScenario_2_rep0.log": "2", # "RouteScenario_4_rep0.log": "4", # "RouteScenario_6_rep0.log": "6", 
+# "RouteScenario_8_rep0.log": "8", #"RouteScenario_9_rep0.log": "9",# "RouteScenario_10_rep0.log": "10",# "RouteScenario_12_rep0.log": "12",  # "RouteScenario_15_rep0.log": "15", # "RouteScenario_16_rep0.log": "16",
+#  "RouteScenario_17_rep0.log": "17", #"RouteScenario_19_rep0.log": "19",#  "RouteScenario_20_rep0.log": "20",# "RouteScenario_21_rep0.log": "21", # "RouteScenario_23_rep0.log": "23", 
+# "RouteScenario_25_rep0.log": "25", "#"RouteScenario_29_rep0.log": "29",#"RouteScenario_32_rep0.log": "32","RouteScenario_36_rep0.log": "36", "RouteScenario_39_rep0.log": "39", "RouteScenario_40_rep0.log": "40", "RouteScenario_48_rep0.log": "48",
+#"RouteScenario_56_rep0.log": "56", "RouteScenario_61_rep0.log": "61", "RouteScenario_65_rep0.log": "65", "RouteScenario_73_rep0.log": "73", #"RouteScenario_80_rep0.log": "80", 
+#"RouteScenario_81_rep0.log": "81", "RouteScenario_82_rep0.log": "82", "RouteScenario_84_rep0.log": "84","RouteScenario_88_rep0.log": "88", "RouteScenario_89_rep0.log": "89","RouteScenario_90_rep0.log": "90",
+#"RouteScenario_95_rep0.log": "95",  "RouteScenario_96_rep0.log": "96", "RouteScenario_100_rep0.log": "100", "RouteScenario_105_rep0.log": "105", "RouteScenario_121_rep0.log": "121", 
+#"RouteScenario_124_rep0.log": "124", #"RouteScenario_130_rep0.log": "130"
 
 REPLAY_ROUTE_MAP = {
 
-    "RouteScenario_8_rep0.log": "8" #most non-deterministic Scenario from flakiness study (example)
+    "RouteScenario_8_rep0.log": "8"  #nondeterministic scenario according to flakiness paper 
 
 }
 
@@ -127,7 +130,7 @@ class ReplayADSRunner:
         self.subset = subset
         self.statistics_manager = statistics_manager
         self.sensor_interface = SensorInterface()
-
+        self.replay_actor_ids = set()
 
 
 # ---------------------------------------------------
@@ -146,8 +149,21 @@ class ReplayADSRunner:
         town = get_town_for_route(ROUTE_FILE, self.subset)
 
         print("Loading town:", town)
-
         self.world = self.client.load_world(town)
+
+        # reset world
+        self.client.reload_world()
+        self.world = self.client.get_world()
+
+        # apply deterministic settings 
+        settings = self.world.get_settings()
+        settings.synchronous_mode = True
+        settings.fixed_delta_seconds = 1.0 / FPS
+        self.world.apply_settings(settings)
+
+        traffic_manager = self.client.get_trafficmanager(8000)
+        traffic_manager.set_synchronous_mode(True)
+        traffic_manager.set_random_device_seed(57)
 
         for _ in range(10):
             self.world.tick()
@@ -155,10 +171,6 @@ class ReplayADSRunner:
         CarlaDataProvider.set_client(self.client)
         CarlaDataProvider.set_world(self.world)
 
-        settings = self.world.get_settings()
-        settings.synchronous_mode = True
-        settings.fixed_delta_seconds = 1.0 / FPS
-        self.world.apply_settings(settings)
 
         print("Starting replay:", self.replay_file)
 
@@ -169,6 +181,9 @@ class ReplayADSRunner:
             self.world.tick()
 
         print("[experiment_runner] Replay actors spawned")
+        # store replay actor ids
+        self.replay_actor_ids = set(a.id for a in self.world.get_actors())
+        print("Replay actors captured:", len(self.replay_actor_ids))
 
         ego_transform = None
 
@@ -259,6 +274,34 @@ class ReplayADSRunner:
     # Remove scenario actors spawned (not actors in replay)
     # ------------------------------------------------------
 
+
+    def remove_non_replay_actors(self):
+
+        print("Removing non-replay actors")
+
+        for actor in self.world.get_actors():
+
+            # keep replay actors
+            if actor.id in self.replay_actor_ids:
+                continue
+
+            # keep ego vehicle
+            role = actor.attributes.get("role_name")
+            if role == "hero":
+                continue
+
+            # keep sensors
+            if actor.type_id.startswith("sensor"):
+                continue
+
+            try:
+                print("Destroying:", actor.id, actor.type_id)
+                actor.destroy()
+            except:
+                pass
+
+        self.world.tick()
+
     def remove_scenario_actors(self):
 
         print("Removing scenario actors only")
@@ -340,9 +383,11 @@ class ReplayADSRunner:
 
         # now scenario exists inside manager
         self.remove_scenario_actors()
+        self.remove_non_replay_actors()
         time.sleep(5)
         for _ in range(10):
             self.world.tick()
+        
 
         # register scenario for statistics
         self.statistics_manager.set_scenario(self.manager.scenario)
@@ -455,6 +500,7 @@ def main():
         
 
         runner.setup_and_start_replay()
+        runner.remove_non_replay_actors()
         runner.load_route()
         runner.load_agent()
         runner.attach_ads()
