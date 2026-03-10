@@ -12,7 +12,7 @@ for i in $(seq 0 4)
 do
     export REP=$i
 
-    ./scripts/start_detdrive_experiment.sh True 20
+    ./scripts/start_dtdrive_experiment.sh True 20
 
     # Skip saving the warm-up i.e., 1st repetition
     if [ "$i" -gt 0 ]; then
