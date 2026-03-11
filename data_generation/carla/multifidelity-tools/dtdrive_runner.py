@@ -47,7 +47,7 @@ FPS = 20
 #"RouteScenario_124_rep0.log": "124", #"RouteScenario_130_rep0.log": "130"
 
 REPLAY_ROUTE_MAP = {
-    "RouteScenario_61_rep0.log": "61"  #most nondeterministic scenario according to flakiness paper 
+    "RouteScenario_8_rep0.log": "8"  #most nondeterministic scenario according to flakiness paper 
 }
 
 # ---------------------------------------------------
