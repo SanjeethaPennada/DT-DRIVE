@@ -35,4 +35,4 @@ export UNCERTAINTY_THRESHOLD=0.33
 
 
 python3 ${WORK_DIR}/multifidelity-tools/dtdrive_runner.py $@
-echo "DET-Drive successfully finished"
+echo "DT-Drive successfully finished"
