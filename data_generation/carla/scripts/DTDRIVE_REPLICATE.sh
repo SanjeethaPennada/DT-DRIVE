@@ -7,20 +7,20 @@ mkdir -p data-bucket/
 # clean existing results
 ./scripts/clean_results.sh
 
-# repetitions
+# do repetitions
 for i in $(seq 0 4)
 do
-    export REP=$i
-
+    # Run evaluation in EPIC mode in 20FPS (the default)
     ./scripts/start_dtdrive_experiment.sh True 20
+    
+    # save results to data bucket
+    mkdir -p data-bucket/rep$i/
+    cp -rv results/* data-bucket/rep$i/
 
-    # Skip saving the warm-up i.e., 1st repetition
-    if [ "$i" -gt 0 ]; then
-        mkdir -p data-bucket/rep$((i-1))/
-        cp -rv results/* data-bucket/rep$((i-1))/
-    fi
-
+    # clean existing results
     ./scripts/clean_results.sh
+    
+    
 done
 
 echo "All done"
