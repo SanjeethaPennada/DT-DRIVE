@@ -1,0 +1,8 @@
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore the Driving agent files
+data_generation/carla/ads/
+
+# Ignore the Carla simulator files
+data_generation/carla/carla/
