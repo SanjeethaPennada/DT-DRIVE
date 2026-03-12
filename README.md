@@ -11,17 +11,17 @@ DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in
 DT-DRIVE/
 ├─ data_generation/
 │  ├─ carla/
-│  │  ├─ flaky_data_bucket/
+│  │  ├─ recordings/
 │  │  │  ├─ record/          # Recorded CARLA Replay logs of flaky scenarios 
 │  │  ├─ scripts/
-│  │  │  ├─ REPLICATE.sh/    # Generates replay logs of flaky scenarios
-│  │  │  ├─ DTDRIVE_REPLICATE.sh/     # Run deterministic evaluation
+│  │  │  ├─ RECORD.sh/    # Generates replay logs when input is json file
+│  │  │  ├─ DTDRIVE.sh/     # Run DET DRIVE when input is a log file
 ├─ results/
 │  ├─ carla/
 │  │  ├─ data/
 │  │  ├─ notebooks/
-│  │  │  ├─ flakiness.py/    # Flakiness analysis
-│  │  │  ├─ determinism.py/  # Deterministic evaluation analysis
+│  │  │  ├─ flakiness.py/    # Flakiness analysis of recorded logs
+│  │  │  ├─ determinism.py/  # Deterministic evaluation analysis after running DT DRIVE
 ```
 
 ## Prerequisites
@@ -70,10 +70,10 @@ conda activate garage
 conda activate tfuse
 
 # DT-Drive Record
-./scripts/REPLICATE.sh
+./scripts/RECORD.sh
 
 # DT-Drive Replay
-./scripts/DTDRIVE_REPLICATE.sh
+./scripts/DTDRIVE.sh
 ```
 ## Results
 The `results/notebooks` directory has the scripts to load the evaluation data and generate figures used in the paper.
