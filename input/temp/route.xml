@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <routes>
-	<route id="0">
+	<route id="0" town="Town01">
 		<weathers>
 			<weather cloudiness="0.0" fog_density="2.0" precipitation="100.0" precipitation_deposits="100.0" route_percentage="0.0" sun_altitude_angle="90.0" sun_azimuth_angle="-1.0" wetness="100.0" wind_intensity="100.0"/>
 			<weather cloudiness="0.0" fog_density="2.0" precipitation="0.0" precipitation_deposits="0.0" route_percentage="100.0" sun_altitude_angle="90.0" sun_azimuth_angle="-1.0" wetness="0.0" wind_intensity="0.0"/>
@@ -15,7 +15,7 @@
 			</scenario>
 		</scenarios>
 	</route>
-	<route id="1">
+	<route id="1" town="Town01">
 		<weathers>
 			<weather cloudiness="0.0" fog_density="2.0" precipitation="100.0" precipitation_deposits="100.0" route_percentage="0.0" sun_altitude_angle="90.0" sun_azimuth_angle="-1.0" wetness="100.0" wind_intensity="100.0"/>
 			<weather cloudiness="50.0" fog_density="2.0" precipitation="0.0" precipitation_deposits="0.0" route_percentage="50.0" sun_altitude_angle="90.0" sun_azimuth_angle="-1.0" wetness="0.0" wind_intensity="0.0"/>

@@ -3,6 +3,7 @@
         {
             "route": {
                 "id": 0,
+                "town": "Town01",
                 "weathers": [
                     {
                         "weather": {
@@ -66,6 +67,7 @@
         {
             "route": {
                 "id": 1,
+                "town": "Town01",
                 "weathers": [
                     {
                         "weather": {
