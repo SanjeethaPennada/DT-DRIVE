@@ -1,0 +1,110 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 0.0,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 18.724820887873786,
+                "outside_route_lanes": 0.0,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 6.241606962624595
+            },
+            "meta": {
+                "duration_game": 468.8500069864094,
+                "duration_system": 503.84842681884766,
+                "exceptions": [
+                    [
+                        "RouteScenario_29",
+                        0,
+                        "Failed - Agent got blocked"
+                    ]
+                ],
+                "total_length": 284.81851111524713
+            },
+            "route_id": -1,
+            "scores": {
+                "score_composed": 12.150359332789174,
+                "score_penalty": 0.216,
+                "score_route": 56.251663577727655
+            },
+            "scores_std_dev": {
+                "score_composed": "NaN",
+                "score_penalty": "NaN",
+                "score_route": "NaN"
+            },
+            "status": "Failed"
+        },
+        "progress": [
+            0,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.mercedes-benz.coupe and id=4870 at (x=-25.977, y=347.832, z=0.033)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=4876 at (x=-24.81, y=344.858, z=0.018)",
+                        "Agent collided against object with type=vehicle.audi.a2 and id=4879 at (x=6.507, y=285.806, z=0.033)"
+                    ],
+                    "outside_route_lanes": [],
+                    "red_light": [],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": [
+                        "Agent got blocked at (x=16.078, y=127.787, z=0.033)"
+                    ]
+                },
+                "meta": {
+                    "duration_game": 468.8500069864094,
+                    "duration_system": 503.84842681884766,
+                    "route_length": 284.81851111524713
+                },
+                "route_id": "RouteScenario_29",
+                "scores": {
+                    "score_composed": 12.150359332789174,
+                    "score_penalty": 0.216,
+                    "score_route": 56.251663577727655
+                },
+                "status": "Failed - Agent got blocked"
+            }
+        ]
+    },
+    "eligible": false,
+    "entry_status": "Finished with missing data",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "values": [
+        "12.150",
+        "56.252",
+        "0.216",
+        "0.000",
+        "18.725",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "6.242"
+    ]
+}

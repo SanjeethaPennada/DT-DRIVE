@@ -1,0 +1,149 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 213.73541580660572,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 38.86098469211013,
+                "outside_route_lanes": 6.4768307820183555,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 6.4768307820183555
+            },
+            "meta": {
+                "duration_game": 555.4000082761049,
+                "duration_system": 481.88294410705566,
+                "exceptions": [
+                    [
+                        "RouteScenario_29",
+                        0,
+                        "Failed - Agent got blocked"
+                    ]
+                ],
+                "total_length": 284.81851111524713
+            },
+            "route_id": -1,
+            "scores": {
+                "score_composed": 1.6748831436733454e-06,
+                "score_penalty": 3.089692610278954e-08,
+                "score_route": 54.20873060644464
+            },
+            "scores_std_dev": {
+                "score_composed": "NaN",
+                "score_penalty": "NaN",
+                "score_route": "NaN"
+            },
+            "status": "Failed"
+        },
+        "progress": [
+            0,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.road and id=0 at (x=-6.531, y=295.829, z=1.283)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-8.915, y=293.964, z=1.359)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-7.787, y=291.18, z=1.454)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-7.016, y=288.223, z=1.351)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-6.343, y=285.214, z=1.357)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=-5.405, y=282.253, z=1.353)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-4.496, y=279.286, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-3.656, y=276.367, z=1.353)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-2.858, y=273.413, z=1.353)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=-2.092, y=270.491, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-1.357, y=267.483, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-0.672, y=264.468, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=-0.02, y=261.435, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=0.59, y=258.39, z=1.353)",
+                        "Agent collided against object with type=static.road and id=0 at (x=1.148, y=255.333, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=1.65, y=252.27, z=1.352)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=2.106, y=249.195, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=2.488, y=246.139, z=1.351)",
+                        "Agent collided against object with type=static.road and id=0 at (x=2.809, y=243.094, z=1.351)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=3.101, y=240.029, z=1.35)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.368, y=236.992, z=1.357)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.578, y=233.913, z=1.354)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=3.716, y=230.846, z=1.35)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.835, y=227.762, z=1.35)",
+                        "Agent collided against object with type=static.roadline and id=0 at (x=3.891, y=224.68, z=1.35)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.825, y=215.622, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.457, y=201.901, z=1.354)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.282, y=195.225, z=1.352)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.179, y=190.619, z=1.354)",
+                        "Agent collided against object with type=static.road and id=0 at (x=3.086, y=187.455, z=1.355)",
+                        "Agent collided against object with type=static.road and id=0 at (x=2.999, y=184.412, z=1.357)",
+                        "Agent collided against object with type=static.road and id=0 at (x=2.8, y=181.311, z=1.361)",
+                        "Agent collided against object with type=static.road and id=0 at (x=2.41, y=178.324, z=1.625)"
+                    ],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.mercedes-benz.coupe and id=4870 at (x=-23.174, y=343.922, z=0.034)",
+                        "Agent collided against object with type=vehicle.nissan.patrol and id=4831 at (x=-22.117, y=341.065, z=0.021)",
+                        "Agent collided against object with type=vehicle.diamondback.century and id=4911 at (x=-19.557, y=334.084, z=0.034)",
+                        "Agent collided against object with type=vehicle.diamondback.century and id=4911 at (x=-5.431, y=303.295, z=0.035)",
+                        "Agent collided against object with type=vehicle.chevrolet.impala and id=4719 at (x=3.906, y=221.624, z=1.355)",
+                        "Agent collided against object with type=vehicle.chevrolet.impala and id=4719 at (x=3.53, y=205.371, z=1.353)"
+                    ],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 15.158 meters (1.17% of the completed route)"
+                    ],
+                    "red_light": [],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": [
+                        "Agent got blocked at (x=2.296, y=177.004, z=1.349)"
+                    ]
+                },
+                "meta": {
+                    "duration_game": 555.4000082761049,
+                    "duration_system": 481.88294410705566,
+                    "route_length": 284.81851111524713
+                },
+                "route_id": "RouteScenario_29",
+                "scores": {
+                    "score_composed": 1.6748831436733454e-06,
+                    "score_penalty": 3.089692610278954e-08,
+                    "score_route": 54.20873060644464
+                },
+                "status": "Failed - Agent got blocked"
+            }
+        ]
+    },
+    "eligible": false,
+    "entry_status": "Finished with missing data",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "values": [
+        "0.000",
+        "54.209",
+        "0.000",
+        "0.000",
+        "38.861",
+        "213.735",
+        "0.000",
+        "0.000",
+        "6.477",
+        "0.000",
+        "0.000",
+        "6.477"
+    ]
+}

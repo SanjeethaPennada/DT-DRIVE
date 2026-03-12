@@ -27,7 +27,7 @@ def get_ego_id(client, file: str):
 
 def get_file(fps: int, scenario: int, rep: int):
     RECORD_DIR = Path(
-        f'../carla-multifidelity_tools/results/rep{rep}/record/')
+        f'../carla-multifidelity-tools/results/rep{rep}/record/')
 
     file = RECORD_DIR / f'fps_{fps}_highquality_True' / \
         f'RouteScenario_{scenario}_rep0.log'

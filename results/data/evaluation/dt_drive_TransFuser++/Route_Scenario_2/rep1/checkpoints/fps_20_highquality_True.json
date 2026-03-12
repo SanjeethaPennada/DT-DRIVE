@@ -1,0 +1,110 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 3.667959815466632,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 29.343678523733058,
+                "outside_route_lanes": 3.667959815466632,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 0.0
+            },
+            "meta": {
+                "duration_game": 129.65000193193555,
+                "duration_system": 92.93776941299438,
+                "total_length": 272.63112201592685
+            },
+            "route_id": -1,
+            "scores": {
+                "score_composed": 1.0524405101003436,
+                "score_penalty": 0.010524405101003435,
+                "score_route": 100.0
+            },
+            "scores_std_dev": {
+                "score_composed": "NaN",
+                "score_penalty": "NaN",
+                "score_route": "NaN"
+            },
+            "status": "Completed"
+        },
+        "progress": [
+            0,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [
+                        "Agent collided against object with type=static.road and id=0 at (x=68.689, y=304.559, z=1.294)"
+                    ],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=189.617, y=272.527, z=0.254)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=158.796, y=302.585, z=0.254)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=130.668, y=302.813, z=0.25)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=102.753, y=302.718, z=0.252)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=85.082, y=302.649, z=0.252)",
+                        "Agent collided against object with type=vehicle.diamondback.century and id=738 at (x=71.331, y=302.995, z=0.354)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=659 at (x=64.302, y=304.523, z=0.252)",
+                        "Agent collided against object with type=vehicle.mustang.mustang and id=743 at (x=48.409, y=303.396, z=0.253)"
+                    ],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 10.0 meters (3.6% of the completed route)"
+                    ],
+                    "red_light": [],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": []
+                },
+                "meta": {
+                    "duration_game": 129.65000193193555,
+                    "duration_system": 92.93776941299438,
+                    "route_length": 272.63112201592685
+                },
+                "route_id": "RouteScenario_2",
+                "scores": {
+                    "score_composed": 1.0524405101003436,
+                    "score_penalty": 0.010524405101003435,
+                    "score_route": 100.0
+                },
+                "status": "Completed"
+            }
+        ]
+    },
+    "eligible": false,
+    "entry_status": "Finished with missing data",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "values": [
+        "1.052",
+        "100.000",
+        "0.011",
+        "0.000",
+        "29.344",
+        "3.668",
+        "0.000",
+        "0.000",
+        "3.668",
+        "0.000",
+        "0.000",
+        "0.000"
+    ]
+}

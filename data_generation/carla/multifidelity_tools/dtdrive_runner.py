@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 ROUTE_FILE = str(BASE_DIR / "data/routes/routes_devtest_sliced.xml")
 SCENARIO_FILE = str(BASE_DIR / "scenario_runner/srunner/data/all_towns_traffic_scenarios.json")
 rep = int(os.environ.get("REP", 0))
-REPLAY_DIR = str(BASE_DIR / "flaky-data-bucket/rep1/record/fps_20_highquality_True")
+REPLAY_DIR = str(BASE_DIR / "recordings/rep1/record/fps_20_highquality_True")
 
 #FPS 
 FPS = 20
@@ -37,17 +37,9 @@ FPS = 20
 # Mapping replay and subset
 # ---------------------------------------------------
 
-#"RouteScenario_0_rep0.log": "0", # "RouteScenario_1_rep0.log": "1", # "RouteScenario_2_rep0.log": "2", # "RouteScenario_4_rep0.log": "4", # "RouteScenario_6_rep0.log": "6", 
-#"RouteScenario_8_rep0.log": "8", #"RouteScenario_9_rep0.log": "9",# "RouteScenario_10_rep0.log": "10",# "RouteScenario_12_rep0.log": "12",  # "RouteScenario_15_rep0.log": "15", # "RouteScenario_16_rep0.log": "16",
-# "RouteScenario_17_rep0.log": "17", #"RouteScenario_19_rep0.log": "19",#  "RouteScenario_20_rep0.log": "20",# "RouteScenario_21_rep0.log": "21", # "RouteScenario_23_rep0.log": "23", 
-# "RouteScenario_25_rep0.log": "25", "#"RouteScenario_29_rep0.log": "29",#"RouteScenario_32_rep0.log": "32","RouteScenario_36_rep0.log": "36", "RouteScenario_39_rep0.log": "39", "RouteScenario_40_rep0.log": "40", "RouteScenario_48_rep0.log": "48",
-#"RouteScenario_56_rep0.log": "56", "RouteScenario_61_rep0.log": "61", "RouteScenario_65_rep0.log": "65", "RouteScenario_73_rep0.log": "73", #"RouteScenario_80_rep0.log": "80", 
-#"RouteScenario_81_rep0.log": "81", "RouteScenario_82_rep0.log": "82", "RouteScenario_84_rep0.log": "84","RouteScenario_88_rep0.log": "88", "RouteScenario_89_rep0.log": "89","RouteScenario_90_rep0.log": "90",
-#"RouteScenario_95_rep0.log": "95",  "RouteScenario_96_rep0.log": "96", "RouteScenario_100_rep0.log": "100", "RouteScenario_105_rep0.log": "105", "RouteScenario_121_rep0.log": "121", 
-#"RouteScenario_124_rep0.log": "124", #"RouteScenario_130_rep0.log": "130"
 
 REPLAY_ROUTE_MAP = {
-    "RouteScenario_8_rep0.log": "8"  #most nondeterministic scenario according to flakiness paper 
+"RouteScenario_36_rep0.log": "36"  #Example Scenario
 }
 
 # ---------------------------------------------------
@@ -112,7 +104,7 @@ def initialize_checkpoint(path):
 
 class ReplayADSRunner:
 
-    def __init__(self, agent_path, agent_config, route_index, replay_file, subset, statistics_manager, base_dir=BASE_DIR, route_file=ROUTE_FILE, scenario_file=SCENARIO_FILE):
+    def __init__(self, agent_path, agent_config, route_index, replay_file, subset, statistics_manager):
 
         self.route_index = route_index
         self.agent_path = agent_path
@@ -122,9 +114,6 @@ class ReplayADSRunner:
         self.statistics_manager = statistics_manager
         self.sensor_interface = SensorInterface()
         self.replay_actor_ids = set()
-        self.BASE_DIR = base_dir
-        self.ROUTE_FILE = route_file
-        self.SCENARIO_FILE = scenario_file
 
 
 # ---------------------------------------------------
@@ -138,10 +127,8 @@ class ReplayADSRunner:
         self.client = carla.Client("localhost", 2000)
         self.client.set_timeout(20)
 
-        # -------- determine town from replay file --------
-        print("Attempting to load replay info for " + self.BASE_DIR + '/' + self.replay_file)
-        replay_info = self.client.show_recorder_file_info(self.BASE_DIR + '/' + self.replay_file, False)
-        town = replay_info.splitlines()[1][5:]
+        # -------- determine town from route file --------
+        town = get_town_for_route(ROUTE_FILE, self.subset)
 
         print("Loading town:", town)
 
@@ -205,8 +192,8 @@ class ReplayADSRunner:
         print("Loading route subset:", self.subset)
 
         route_indexer = RouteIndexer(
-            self.ROUTE_FILE,
-            self.SCENARIO_FILE,
+            ROUTE_FILE,
+            SCENARIO_FILE,
             1,
             self.subset
         )
@@ -235,9 +222,7 @@ class ReplayADSRunner:
         print("Loading ADS agent")
 
         module_name = os.path.basename(self.agent_path).split(".")[0]
-        print("Importing module " + module_name)
 
-        print("Adding " + os.path.dirname(self.agent_path) + " to path")
         sys.path.insert(0, os.path.dirname(self.agent_path))
 
         module = importlib.import_module(module_name)
@@ -348,7 +333,7 @@ class ReplayADSRunner:
         self.statistics_manager._total_routes = len(REPLAY_ROUTE_MAP)
 
         self.route_config.scenario_file = str(
-            self.BASE_DIR + "/data_generation/carla/scenario_runner/srunner/data/no_scenarios.json"
+            BASE_DIR / "scenario_runner/srunner/data/no_scenarios.json"
         )
 
         scenario = RouteScenario(

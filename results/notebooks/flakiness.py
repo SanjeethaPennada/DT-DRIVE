@@ -1,21 +1,85 @@
-import seaborn as sns
+import argparse
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
+import seaborn as sns
 
-from util.load_scenarios import load_scenario_df
 from util.load_evaluations import load_benchmark_df
 
-from pathlib import Path
+
+# ------------------------------------------------
+# Paths
+# ------------------------------------------------
 
 BASE_DIR = Path.cwd().parent
 
-EVAL_PATH = BASE_DIR / "data" / "evaluation" / "default_flaky"
+DEFAULT_EVAL_PATH = BASE_DIR / "data" / "evaluation" / "default_flaky"
 
-def main():
 
-    # Load evaluation results
-    eval_df = load_benchmark_df(str(EVAL_PATH))
+# ------------------------------------------------
+# Argument parser
+# ------------------------------------------------
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "--eval_path",
+    type=str,
+    default=None,
+    help="Path to evaluation results"
+)
+
+args = parser.parse_args()
+
+EVAL_PATH = Path(args.eval_path) if args.eval_path else DEFAULT_EVAL_PATH
+
+
+# ------------------------------------------------
+# Safe length function
+# ------------------------------------------------
+
+def safe_len(x):
+
+    if isinstance(x, (list, tuple, set)):
+        return len(x)
+
+    if pd.isna(x):
+        return 0
+
+    if isinstance(x, bool):
+        return int(x)
+
+    if isinstance(x, (int, float)):
+        return int(x)
+
+    if isinstance(x, str):
+
+        if x.lower() == "true":
+            return 1
+
+        if x.lower() == "false":
+            return 0
+
+        try:
+            return int(x)
+        except:
+            return 0
+
+    return 0
+
+
+# ------------------------------------------------
+# Flakiness analysis
+# ------------------------------------------------
+
+def analyze_flakiness(eval_path):
+
+    print("\n====================================")
+    print("Flakiness Analysis")
+    print("====================================")
+
+    eval_df = load_benchmark_df(str(eval_path))
 
     eval_df = eval_df.add_prefix("eval.")
     df = eval_df.copy()
@@ -31,42 +95,14 @@ def main():
     # Prepare dataframe
     df = df.reset_index().set_index(["route_index", "rep"]).sort_index()
 
-    # Safe length function
-    def safe_len(x):
-
-        if isinstance(x, (list, tuple, set)):
-            return len(x)
-
-        if pd.isna(x):
-            return 0
-
-        if isinstance(x, bool):
-            return int(x)
-
-        if isinstance(x, (int, float)):
-            return int(x)
-
-        if isinstance(x, str):
-            if x.lower() == "true":
-                return 1
-            if x.lower() == "false":
-                return 0
-            try:
-                return int(x)
-            except:
-                return 0
-
-        return 0
-
-    # Convert behaviours
+    # Convert behaviour values
     behaviours_df = df.apply(lambda col: col.map(safe_len)).astype(str).agg(" ".join, axis=1)
 
-    # Count unique behaviors per route
+    # Count unique behaviours per route
     behaviours_count = behaviours_df.groupby("route_index").nunique()
 
     behaviours_count = behaviours_count.rename("n_behaviors").to_frame()
 
-    # Detect nondeterminism
     behaviours_count["nondeterministic"] = behaviours_count["n_behaviors"] > 1
 
     print("\nFlakiness distribution:")
@@ -77,13 +113,13 @@ def main():
     # --------------------------------
 
     flaky_routes = behaviours_count[behaviours_count["nondeterministic"]].index.tolist()
-    stable_routes = behaviours_count[~behaviours_count["nondeterministic"]].index.tolist()
+    deterministic_routes = behaviours_count[~behaviours_count["nondeterministic"]].index.tolist()
 
     print("\nFlaky route IDs:")
     print(flaky_routes)
 
     print("\nDeterministic route IDs:")
-    print(stable_routes)
+    print(deterministic_routes)
 
     # --------------------------------
     # Export to Excel
@@ -93,7 +129,7 @@ def main():
         "flaky_route_ids.xlsx", index=False
     )
 
-    pd.DataFrame({"route_index": stable_routes}).to_excel(
+    pd.DataFrame({"route_index": deterministic_routes}).to_excel(
         "deterministic_route_ids.xlsx", index=False
     )
 
@@ -103,14 +139,18 @@ def main():
 
     print("\nExcel files exported:")
     print(" - flaky_route_ids.xlsx")
-    print(" - stable_route_ids.xlsx")
+    print(" - deterministic_route_ids.xlsx")
     print(" - route_flakiness_analysis.xlsx")
 
     # --------------------------------
     # Plot flakiness distribution
     # --------------------------------
 
+    sns.set_style("whitegrid")
+
     palette = {False: "green", True: "red"}
+
+    plt.figure()
 
     sns.histplot(
         data=behaviours_count,
@@ -126,11 +166,21 @@ def main():
     plt.title("Flakiness Distribution")
 
     plt.tight_layout()
+
     plt.savefig("flakiness_distribution.png")
 
     print("\nPlot saved: flakiness_distribution.png")
 
     plt.show()
+
+
+# ------------------------------------------------
+# Main
+# ------------------------------------------------
+
+def main():
+
+    analyze_flakiness(EVAL_PATH)
 
 
 if __name__ == "__main__":
