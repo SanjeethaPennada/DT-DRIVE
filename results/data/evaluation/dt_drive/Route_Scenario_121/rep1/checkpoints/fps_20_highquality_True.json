@@ -5,7 +5,7 @@
             "infractions": {
                 "collisions_layout": 0.0,
                 "collisions_pedestrian": 0.0,
-                "collisions_vehicle": 3.110556908687716,
+                "collisions_vehicle": 0.0,
                 "outside_route_lanes": 0.0,
                 "red_light": 0.0,
                 "route_dev": 0.0,
@@ -14,14 +14,14 @@
                 "vehicle_blocked": 0.0
             },
             "meta": {
-                "duration_game": 102.0500015206635,
-                "duration_system": 83.06057500839233,
+                "duration_game": 101.75000151619315,
+                "duration_system": 82.57595682144165,
                 "total_length": 321.48583978869584
             },
             "route_id": -1,
             "scores": {
-                "score_composed": 60.0,
-                "score_penalty": 0.6,
+                "score_composed": 100.0,
+                "score_penalty": 1.0,
                 "score_route": 100.0
             },
             "scores_std_dev": {
@@ -41,9 +41,7 @@
                 "infractions": {
                     "collisions_layout": [],
                     "collisions_pedestrian": [],
-                    "collisions_vehicle": [
-                        "Agent collided against object with type=vehicle.mustang.mustang and id=11107 at (x=40.067, y=-91.099, z=0.033)"
-                    ],
+                    "collisions_vehicle": [],
                     "outside_route_lanes": [],
                     "red_light": [],
                     "route_dev": [],
@@ -52,14 +50,14 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 102.0500015206635,
-                    "duration_system": 83.06057500839233,
+                    "duration_game": 101.75000151619315,
+                    "duration_system": 82.57595682144165,
                     "route_length": 321.48583978869584
                 },
                 "route_id": "RouteScenario_121",
                 "scores": {
-                    "score_composed": 60.0,
-                    "score_penalty": 0.6,
+                    "score_composed": 100.0,
+                    "score_penalty": 1.0,
                     "score_route": 100.0
                 },
                 "status": "Completed"
@@ -83,11 +81,11 @@
         "Agent blocked"
     ],
     "values": [
-        "60.000",
         "100.000",
-        "0.600",
+        "100.000",
+        "1.000",
         "0.000",
-        "3.111",
+        "0.000",
         "0.000",
         "0.000",
         "0.000",
