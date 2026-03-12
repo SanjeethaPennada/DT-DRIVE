@@ -72,7 +72,7 @@ conda activate tfuse
 # DT-Drive Record
 ./scripts/REPLICATE.sh
 
-# DT-Drive 
+# DT-Drive Replay
 ./scripts/DTDRIVE_REPLICATE.sh
 ```
 ## Results
@@ -90,6 +90,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
