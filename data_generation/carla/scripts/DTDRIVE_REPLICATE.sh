@@ -1,5 +1,9 @@
 # !/usr/bin/env bash
 
+
+# Remove old data bucket if it exists
+rm -r data-bucket/
+
 # prepare data bucket
 mkdir -p data-bucket/
 

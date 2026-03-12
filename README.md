@@ -84,8 +84,13 @@ chmod +x ./scripts/*
 # Download CARLA
 ./scripts/setup_carla.sh
 
-# Download TransFuser++
-./scripts/setup_garage.sh
+
+# Download ADS: TransFuser Plus Plus
+./scripts/setup_transfuser_plus_plus.sh
+
+# Download ADS: TransFuser
+./scripts/setup_transfuser.sh
+
 
 # Activate environment
 conda activate garage
