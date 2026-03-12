@@ -1,35 +1,23 @@
-import argparse
-from pathlib import Path
-
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
-# from util.load_scenarios import load_scenario_df
+from util.load_scenarios import load_scenario_df
 from util.load_evaluations import load_benchmark_df
+
+from pathlib import Path
 
 # ------------------------------------------------
 # Paths
 # ------------------------------------------------
 
 BASE_DIR = Path.cwd().parent
-DEFAULT_EVAL_PATH = BASE_DIR / "data" / "evaluation" / "dt_drive" / "Route_Scenario_8"
-
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "eval_path",
-    type=str,
-    nargs="?",
-    default=None,
-    help="Path to evaluation results directory",
-)
-args = parser.parse_args()
-
-EVAL_PATH = Path(args.eval_path) if args.eval_path else DEFAULT_EVAL_PATH
+EVAL_PATH = BASE_DIR / "data" / "evaluation" / "dt_drive" / "Route_Scenario_8"
 
 
 def main():
+
     # ------------------------------------------------
     # Load evaluation results
     # ------------------------------------------------
@@ -60,6 +48,7 @@ def main():
     # ------------------------------------------------
 
     def safe_len(x):
+
         if isinstance(x, (list, tuple, set)):
             return len(x)
 
@@ -73,6 +62,7 @@ def main():
             return int(x)
 
         if isinstance(x, str):
+
             if x.lower() == "true":
                 return 1
 
@@ -139,7 +129,9 @@ def main():
         "deterministic_route_ids.xlsx", index=False
     )
 
-    behaviours_count.reset_index().to_excel("determinism_analysis.xlsx", index=False)
+    behaviours_count.reset_index().to_excel(
+        "determinism_analysis.xlsx", index=False
+    )
 
     print("\nExcel files exported:")
     print(" - nondeterministic_route_ids.xlsx")
@@ -150,9 +142,10 @@ def main():
     # Create readable determinism column for plotting
     # ------------------------------------------------
 
-    behaviours_count["determinism_type"] = behaviours_count["nondeterministic"].map(
-        {False: "Deterministic", True: "Nondeterministic"}
-    )
+    behaviours_count["determinism_type"] = behaviours_count["nondeterministic"].map({
+        False: "Deterministic",
+        True: "Nondeterministic"
+    })
 
     # ------------------------------------------------
     # Plot determinism distribution
@@ -160,7 +153,10 @@ def main():
 
     sns.set_style("whitegrid")
 
-    palette = {"Deterministic": "green", "Nondeterministic": "red"}
+    palette = {
+        "Deterministic": "green",
+        "Nondeterministic": "red"
+    }
 
     sns.histplot(
         data=behaviours_count,
@@ -168,7 +164,7 @@ def main():
         hue="determinism_type",
         stat="percent",
         discrete=True,
-        palette=palette,
+        palette=palette
     )
 
     plt.xlabel("Route Type")
