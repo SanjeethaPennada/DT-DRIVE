@@ -427,10 +427,9 @@ class ReplayADSRunner:
 # Evaluation results - directory preparation
 # ---------------------------------------------------
 
-def prepare_run_dirs(rep):
+def prepare_run_dirs():
 
-    root = Path("data-bucket") / f"rep{rep}"
-
+    root = Path("results")
     checkpoints = root / "checkpoints"
 
     checkpoints.mkdir(parents=True, exist_ok=True)
@@ -454,9 +453,7 @@ def main():
 
     statistics_manager = StatisticsManager()
 
-    rep = int(os.environ.get("REP", 0))
-    dirs = prepare_run_dirs(rep)
-
+    dirs = prepare_run_dirs()
 
     initialize_checkpoint(dirs["checkpoint"])
 

@@ -2,9 +2,9 @@
 
 (Submitted to ICST 2026 (under review))
 
-DT-DRIVE is a framework for testing Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to:
-- utilises scenario files/log binary files to test the ADS under controlled or modifiable conditions
-- applies DT-DRIVE Testing tool to test ADS in deterministic replay environment using recorded binary files of 43 flaky scenarios in CARLA simulator
+DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 43 flaky scenarios using TransFuser++ successfully. 
+
+![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
 
 ## Directory structure overview:
 ```
@@ -25,56 +25,28 @@ DT-DRIVE/
 ```
 
 ## Prerequisites
-All scripts assume using:
-```
-Ubuntu 20.04+
-CARLA 0.9.10.1
-conda
-```
+
+### Hardware
+- GPU: NVIDIA Corporation
+- Memory: 16GB+
+- Storage: 100GB+
+
+### Software
+- Ubuntu 20.04
+- nvidia driver
+- CARLA 0.9.10.1 
+
 # DT-DRIVE TOOL 
-(Pending) 
+
 
 # Testing the Determinism of ADS using DT-DRIVE (Application)
-The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs **TransFuser++** on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DTDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
+The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs TransFuser++ on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DTDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
 1. A CARLA replay log is loaded.
 2. The original ego vehicle is removed.
 3. The ADS under test is attached as the new ego agent.
 4. The agent drives in the replayed environment under deterministic simulation settings.
 This enables consistent and reproducible evaluation across multiple runs.
-The following pipeline illustrates how DT-DRIVE evaluates an autonomous driving system in a deterministic replay environment.
 
-```
-   Recorded Replay Logs
-            │
-            ▼
-┌─────────────────────────┐
-│   REMO Replay Loader    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│    REMO Ego Removal     │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Route & Scenario Loader │
-│   (CARLA Leaderboard)   │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│   Attach ADS Agent      │
-│   (Agent Under Test)    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Deterministic Execution │
-│    (Sync Simulation)    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│   Evaluation Metrics    │
-│  (Statistics Manager)   │
-└─────────────────────────┘
-```
 ### Experimental pipeline
 
 ```bash
@@ -84,16 +56,23 @@ chmod +x ./scripts/*
 # Download CARLA
 ./scripts/setup_carla.sh
 
-# Download TransFuser++
-./scripts/setup_garage.sh
 
-# Activate environment
+# Download ADS: TransFuser Plus Plus
+./scripts/setup_transfuser_plus_plus.sh
+
+# Activate TransFuser Plus Plus environment
 conda activate garage
 
-# Generate flaky scenarios
+# Download ADS: TransFuser
+./scripts/setup_transfuser.sh
+
+# Activate TransFuser environment
+conda activate tfuse
+
+# DT-Drive Record
 ./scripts/REPLICATE.sh
 
-# Run DT-DRIVE deterministic evaluation
+# DT-Drive Replay
 ./scripts/DTDRIVE_REPLICATE.sh
 ```
 ## Results
@@ -111,6 +90,12 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
+
+
+
+
+
 
 
 
