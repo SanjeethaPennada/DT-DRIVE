@@ -36,7 +36,7 @@ DT-DRIVE/
 
 # DT-DRIVE TOOL 
 
-(Pending) 
+![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
 
 # Testing the Determinism of ADS using DT-DRIVE (Application)
 The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs TransFuser++ on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DTDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
@@ -87,7 +87,6 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
-
 
 
 
