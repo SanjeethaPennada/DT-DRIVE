@@ -14,8 +14,8 @@
                 "vehicle_blocked": 0.0
             },
             "meta": {
-                "duration_game": 101.75000151619315,
-                "duration_system": 81.2362916469574,
+                "duration_game": 101.90000151842833,
+                "duration_system": 119.29982662200928,
                 "total_length": 321.48583978869584
             },
             "route_id": -1,
@@ -50,8 +50,8 @@
                     "vehicle_blocked": []
                 },
                 "meta": {
-                    "duration_game": 101.75000151619315,
-                    "duration_system": 81.2362916469574,
+                    "duration_game": 101.90000151842833,
+                    "duration_system": 119.29982662200928,
                     "route_length": 321.48583978869584
                 },
                 "route_id": "RouteScenario_121",
