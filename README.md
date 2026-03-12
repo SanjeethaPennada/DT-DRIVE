@@ -69,10 +69,10 @@ conda activate garage
 # Activate TransFuser environment
 conda activate tfuse
 
-# Generate flaky scenarios
+# DT-Drive Record
 ./scripts/REPLICATE.sh
 
-# Run DT-DRIVE deterministic evaluation
+# DT-Drive 
 ./scripts/DTDRIVE_REPLICATE.sh
 ```
 ## Results
@@ -90,6 +90,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
