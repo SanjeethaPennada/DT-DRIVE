@@ -32,6 +32,7 @@ CARLA 0.9.10.1
 conda
 ```
 # DT-DRIVE TOOL 
+
 (Pending) 
 
 # Testing the Determinism of ADS using DT-DRIVE (Application)
@@ -41,40 +42,7 @@ The `data_generation` directory contains scripts used to generate replay logs fo
 3. The ADS under test is attached as the new ego agent.
 4. The agent drives in the replayed environment under deterministic simulation settings.
 This enables consistent and reproducible evaluation across multiple runs.
-The following pipeline illustrates how DT-DRIVE evaluates an autonomous driving system in a deterministic replay environment.
 
-```
-   Recorded Replay Logs
-            │
-            ▼
-┌─────────────────────────┐
-│   REMO Replay Loader    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│    REMO Ego Removal     │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Route & Scenario Loader │
-│   (CARLA Leaderboard)   │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│   Attach ADS Agent      │
-│   (Agent Under Test)    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│ Deterministic Execution │
-│    (Sync Simulation)    │
-└───────────┬─────────────┘
-            ▼
-┌─────────────────────────┐
-│   Evaluation Metrics    │
-│  (Statistics Manager)   │
-└─────────────────────────┘
-```
 ### Experimental pipeline
 
 ```bash
@@ -116,6 +84,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
