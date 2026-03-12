@@ -54,6 +54,7 @@ class RouteParser(object):
         """
 
         list_route_descriptions = []
+        print("Route filename is " + route_filename)
         tree = ET.parse(route_filename)
         for route in tree.iter("route"):
 

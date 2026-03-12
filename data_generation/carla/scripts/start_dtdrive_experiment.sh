@@ -34,5 +34,5 @@ export DATAGEN=0
 export UNCERTAINTY_THRESHOLD=0.33
 
 
-python3 ${WORK_DIR}/multifidelity-tools/dtdrive_runner.py $@
+python3 ${WORK_DIR}/multifidelity_tools/dtdrive_runner.py $@
 echo "DT-Drive successfully finished"
