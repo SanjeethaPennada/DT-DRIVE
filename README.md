@@ -2,9 +2,9 @@
 
 (Submitted to ICST 2026 (under review))
 
-![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
-
 DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 43 flaky scenarios using TransFuser++ successfully. 
+
+![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
 
 ## Directory structure overview:
 ```
@@ -88,6 +88,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
