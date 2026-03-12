@@ -76,7 +76,14 @@ conda activate tfuse
 ./scripts/DTDRIVE_REPLICATE.sh
 ```
 ## Results
-The 'notebooks' directory has the scripts to load the evaluation data and generate figures used in the paper.
+The `results/notebooks` directory has the scripts to load the evaluation data and generate figures used in the paper.
+To inspect determinism of scenario evaluations run `determinism.py` and provide path to scenario evaluation points do directory with evaluation results for example:
+```bash
+# Make sure that plotting and export to Excel libraries are installed
+pip install seaborn openpyxl
+python notebooks/determinism.py ./data/evaluation/dt_drive/Route_Scenario_48
+```
+
 
 ## Funding
 This research was funded by the Engineering and Physical Sciences Research Council (EPSRC) through UK Research and Innovation (Project Reference: EP/Y014219/1)
