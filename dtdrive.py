@@ -17,7 +17,7 @@ def update_path():
     sys.path.append(paths['CARLA_ROOT'] + '/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg')
     os.environ['SCENARIO_RUNNER_ROOT'] = paths['CARLA_ROOT'] + '/scenario_runner'
     os.environ['LEADERBOARD_ROOT'] = paths['CARLA_ROOT'] + '/leaderboard'
-    sys.path.append(paths['CARLA_ROOT'] + "/PythonAPI/carla/")
+    sys.path.append(paths['CARLA_ROOT'] + "/ads/transfuser_plus_plus/team_code/")
     sys.path.append(os.environ['SCENARIO_RUNNER_ROOT'])
     sys.path.append(os.environ['LEADERBOARD_ROOT'])
 
@@ -46,6 +46,7 @@ def parse_input():
     parser.add_argument('-a', '--ads', default="transfuser++")
     parser.add_argument('-i', '--input_directory', default="input")
     parser.add_argument('-o', '--output_directory', default="output")
+    parser.add_argument('-n', '--route_id', default=0)
     
     args = parser.parse_args()
     return args
@@ -83,7 +84,7 @@ def register_environment_variables(args):
     paths['CARLA_GARAGE'] = paths['REPO_ROOT'] + '/data_generation/carla/ads/carla_garage'
 
     os.environ['CARLA_GARAGE'] = paths['CARLA_GARAGE']
-    os.environ['TEAM_AGENT'] = paths['CARLA_GARAGE'] + '/team_code/sensor_agent.py'
+    os.environ['TEAM_AGENT'] = paths['CARLA_GARAGE'] + '/transfuser_plus_plus/team_code/sensor_agent.py'
     os.environ['TEAM_CONFIG'] = paths['CARLA_GARAGE'] + '/pretrained_models/longest6/tfpp_all_0'
     os.environ['DATAGEN'] = str(0)
     os.environ['UNCERTAINTY_THRESHOLD'] = str(0.33)
@@ -150,7 +151,7 @@ def run_replay(paths, args):
     runner = ReplayADSRunner(
         agent_path,
         agent_config,
-        route_counter,
+        int(args.route_id),
         replay_file,
         0,
         statistics_manager,
