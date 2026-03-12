@@ -13,7 +13,7 @@ from pathlib import Path
 # ------------------------------------------------
 
 BASE_DIR = Path.cwd().parent
-EVAL_PATH = BASE_DIR / "data" / "evaluation" / "dt_drive" / "RouteScenario_id_8"  #8 represents RouteScenario with id 8, similarly we can obtain this for all the scenarios
+EVAL_PATH = BASE_DIR / "data" / "evaluation" / "dt_drive" / "Route_Scenario_8"
 
 
 def main():
