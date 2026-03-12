@@ -60,12 +60,14 @@ chmod +x ./scripts/*
 # Download ADS: TransFuser Plus Plus
 ./scripts/setup_transfuser_plus_plus.sh
 
+# Activate TransFuser Plus Plus environment
+conda activate garage
+
 # Download ADS: TransFuser
 ./scripts/setup_transfuser.sh
 
-
-# Activate environment
-conda activate garage
+# Activate TransFuser environment
+conda activate tfuse
 
 # Generate flaky scenarios
 ./scripts/REPLICATE.sh
@@ -88,6 +90,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
