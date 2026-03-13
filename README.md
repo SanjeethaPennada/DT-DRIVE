@@ -2,9 +2,7 @@
 
 (Submitted to ICST 2026 (under review))
 
-DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 43 flaky scenarios using TransFuser++ successfully. 
-
-![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
+DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 43 flaky scenarios using TransFuser++ successfully. We have also tested the tool by running 2 ADSs in deterministic CARLA world.  
 
 ## Directory structure overview:
 ```
@@ -14,14 +12,15 @@ DT-DRIVE/
 │  │  ├─ recordings/
 │  │  │  ├─ record/          # Recorded CARLA Replay logs of flaky scenarios 
 │  │  ├─ scripts/
-│  │  │  ├─ RECORD.sh/    # Generates replay logs when input is json file
-│  │  │  ├─ DTDRIVE.sh/     # Run DET DRIVE when input is a log file
+│  │  │  ├─ RECORD.sh/       # Generates replay logs when input is json file
+│  │  │  ├─ DTDRIVE.sh/      # Run DET DRIVE when input is a log file
+│  │  │  ├─ start_dtdrive_experiment.sh/      # Switch ADS
 ├─ results/
 │  ├─ carla/
 │  │  ├─ data/
 │  │  ├─ notebooks/
-│  │  │  ├─ flakiness.py/    # Flakiness analysis of recorded logs
-│  │  │  ├─ determinism.py/  # Deterministic evaluation analysis after running DT DRIVE
+│  │  │  ├─ flakiness.py/    # Flakiness analysis of recorded logs after running RECORD.sh
+│  │  │  ├─ determinism.py/  # Deterministic evaluation analysis after running DTDRIVE.sh
 ```
 
 ## Prerequisites
@@ -34,18 +33,12 @@ DT-DRIVE/
 ### Software
 - Ubuntu 20.04
 - nvidia driver
-- CARLA 0.9.10.1 
+- CARLA 0.9.10.1
+  
+![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
 
 # DT-DRIVE TOOL 
-
-
-# Testing the Determinism of ADS using DT-DRIVE (Application)
-The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: 'REPLICATE.sh' runs TransFuser++ on CARLA Leaderboard routes and records simulation logs for flaky scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: 'DTDRIVE_REPLICATE.sh' runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. During evaluation:
-1. A CARLA replay log is loaded.
-2. The original ego vehicle is removed.
-3. The ADS under test is attached as the new ego agent.
-4. The agent drives in the replayed environment under deterministic simulation settings.
-This enables consistent and reproducible evaluation across multiple runs.
+The `data_generation` directory contains scripts used to generate replay logs for 43 flaky CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. 
 
 ### Experimental pipeline
 
@@ -55,7 +48,6 @@ chmod +x ./scripts/*
 
 # Download CARLA
 ./scripts/setup_carla.sh
-
 
 # Download ADS: TransFuser Plus Plus
 ./scripts/setup_transfuser_plus_plus.sh
@@ -70,7 +62,7 @@ conda activate garage
 conda activate tfuse
 
 # DT-Drive Record
-./scripts/RECORD.sh
+./scripts/RECORD.sh 
 
 # DT-Drive Replay
 ./scripts/DTDRIVE.sh
@@ -81,9 +73,8 @@ To inspect determinism of scenario evaluations run `determinism.py` and provide 
 ```bash
 # Make sure that plotting and export to Excel libraries are installed
 pip install seaborn openpyxl
-python notebooks/determinism.py ./data/evaluation/dt_drive/Route_Scenario_48
+python ./results/notebooks/determinism.py ./results/data/evaluation/dt_drive_TransFuser++/Route_Scenario_36 
 ```
-
 
 ## Funding
 This research was funded by the Engineering and Physical Sciences Research Council (EPSRC) through UK Research and Innovation (Project Reference: EP/Y014219/1)
@@ -97,6 +88,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
