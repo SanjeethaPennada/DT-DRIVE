@@ -73,7 +73,7 @@ To inspect determinism of scenario evaluations run `determinism.py` and provide 
 ```bash
 # Make sure that plotting and export to Excel libraries are installed
 pip install seaborn openpyxl
-python ./results/notebooks/determinism.py ./results/data/evaluation/dt_drive_TransFuser++/Route_Scenario_36 
+python notebooks/determinism.py ./data/evaluation/dt_drive/Route_Scenario_36
 ```
 
 ## Funding
@@ -88,6 +88,7 @@ This implementation is based on code from several repositories. We sincerely tha
 - [Transfuser](https://github.com/autonomousvision/transfuser)
 - [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard)
 - [Scenario Runner](https://github.com/carla-simulator/scenario_runner)
+
 
 
 
