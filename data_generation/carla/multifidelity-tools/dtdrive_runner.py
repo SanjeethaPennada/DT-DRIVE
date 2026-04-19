@@ -133,6 +133,9 @@ class ReplayADSRunner:
         print("Loading town:", town)
 
         self.world = self.client.load_world(town)
+                             
+                             
+        
 
         for _ in range(10):
             self.world.tick()
@@ -149,10 +152,13 @@ class ReplayADSRunner:
         print("Starting replay:", self.replay_file)
 
         self.client.set_replayer_ignore_hero(True)
+        
         self.client.replay_file(self.replay_file, 0, 0, 0)
-
+        
         for _ in range(1):
             self.world.tick()
+            
+        
             
 
         print("[experiment_runner] Replay actors spawned")
