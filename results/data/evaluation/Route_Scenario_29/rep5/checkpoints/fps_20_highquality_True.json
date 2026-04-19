@@ -1,0 +1,116 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 0.0,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 43.36730699616813,
+                "outside_route_lanes": 6.195329570881162,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 6.195329570881162
+            },
+            "meta": {
+                "duration_game": 579.3000086322427,
+                "duration_system": 502.70601987838745,
+                "exceptions": [
+                    [
+                        "RouteScenario_29",
+                        0,
+                        "Failed - Agent got blocked"
+                    ]
+                ],
+                "total_length": 284.81851111524713
+            },
+            "route_id": -1,
+            "scores": {
+                "score_composed": 1.5629241162297536,
+                "score_penalty": 0.027578492223647055,
+                "score_route": 56.671847886217336
+            },
+            "scores_std_dev": {
+                "score_composed": "NaN",
+                "score_penalty": "NaN",
+                "score_route": "NaN"
+            },
+            "status": "Failed"
+        },
+        "progress": [
+            0,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.mercedes-benz.coupe and id=4870 at (x=-24.362, y=345.564, z=0.034)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=4876 at (x=-23.034, y=342.774, z=0.014)",
+                        "Agent collided against object with type=vehicle.nissan.patrol and id=4831 at (x=-21.701, y=340.063, z=0.033)",
+                        "Agent collided against object with type=vehicle.diamondback.century and id=4911 at (x=-19.615, y=334.37, z=0.033)",
+                        "Agent collided against object with type=vehicle.tesla.cybertruck and id=4824 at (x=-8.39, y=307.808, z=0.033)",
+                        "Agent collided against object with type=vehicle.audi.tt and id=4735 at (x=-3.725, y=298.604, z=0.033)",
+                        "Agent collided against object with type=vehicle.mercedes-benz.coupe and id=4859 at (x=13.159, y=195.0, z=0.034)"
+                    ],
+                    "outside_route_lanes": [
+                        "Agent went outside its route lanes for about 20.0 meters (1.48% of the completed route)"
+                    ],
+                    "red_light": [],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": [
+                        "Agent got blocked at (x=18.795, y=118.117, z=0.033)"
+                    ]
+                },
+                "meta": {
+                    "duration_game": 579.3000086322427,
+                    "duration_system": 502.70601987838745,
+                    "route_length": 284.81851111524713
+                },
+                "route_id": "RouteScenario_29",
+                "scores": {
+                    "score_composed": 1.5629241162297536,
+                    "score_penalty": 0.027578492223647055,
+                    "score_route": 56.671847886217336
+                },
+                "status": "Failed - Agent got blocked"
+            }
+        ]
+    },
+    "eligible": false,
+    "entry_status": "Finished with missing data",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "values": [
+        "1.563",
+        "56.672",
+        "0.028",
+        "0.000",
+        "43.367",
+        "0.000",
+        "0.000",
+        "0.000",
+        "6.195",
+        "0.000",
+        "0.000",
+        "6.195"
+    ]
+}
