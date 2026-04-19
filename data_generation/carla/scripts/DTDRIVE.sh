@@ -12,7 +12,7 @@ mkdir -p data-bucket/
 ./scripts/clean_results.sh
 
 # do repetitions
-for i in $(seq 0 4)
+for i in $(seq 0 9)
 do
     # Run evaluation in EPIC mode in 20FPS (the default)
     ./scripts/start_dtdrive_experiment.sh True 20
