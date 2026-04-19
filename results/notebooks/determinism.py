@@ -15,9 +15,8 @@ from util.load_evaluations import load_benchmark_df
 
 BASE_DIR = Path.cwd().parent
 
-DEFAULT_EVAL_PATH_1 = BASE_DIR / "data" / "evaluation" / "dt_drive_TransFuser++" / "Route_Scenario_36"  #ADS1
-#DEFAULT_EVAL_PATH_2 = BASE_DIR / "data" / "evaluation" / "dt_drive_TransFuser" / "Route_Scenario_36"    #ADS2
- 
+DEFAULT_EVAL_PATH = BASE_DIR / "data" / "evaluation" / "Route_Scenario_36" 
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "eval_path",
