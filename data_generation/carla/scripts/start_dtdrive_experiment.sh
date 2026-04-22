@@ -27,9 +27,9 @@ export RECORD_PATH=${WORK_DIR}/results/record
 export SAVE_PATH=${WORK_DIR}/results/save
 
 # ads (TF)
-  # export TF_DIR=${WORK_DIR}/ads/transfuser
-  # export TEAM_AGENT=${TF_DIR}/team_code_transfuser/submission_agent.py
-  # export TEAM_CONFIG=${TF_DIR}/model_ckpt/models_2022/transfuser
+#export TF_DIR=${WORK_DIR}/ads/transfuser
+#export TEAM_AGENT=${TF_DIR}/team_code_transfuser/submission_agent.py
+#export TEAM_CONFIG=${TF_DIR}/model_ckpt/models_2022/transfuser
 
 # ads (TF++)
 export TFPP_DIR=${WORK_DIR}/ads/transfuser_plus_plus
@@ -41,5 +41,5 @@ export DATAGEN=0
 
 
 
-python3 ${WORK_DIR}/multifidelity-tools/dtdrive_runner.py $@
+python3 ${WORK_DIR}/multifidelity-tools/dtdrive_runner.py "$@"
 echo "DT-Drive successfully finished"

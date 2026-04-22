@@ -8,6 +8,7 @@ import time
 import json
 import subprocess
 import signal
+import argparse
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from srunner.tools.route_manipulation import interpolate_trajectory
@@ -18,7 +19,7 @@ from leaderboard.utils.route_indexer import RouteIndexer
 from leaderboard.autoagents.agent_wrapper import AgentWrapper
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
 from leaderboard.envs.sensor_interface import SensorInterface
-
+from scripts.config import read_config, configure_environment
 
 # ---------------------------------------------------
 # Paths
@@ -29,6 +30,7 @@ ROUTE_FILE = str(BASE_DIR / "data/routes/routes_devtest_sliced.xml")
 SCENARIO_FILE = str(BASE_DIR / "scenario_runner/srunner/data/all_towns_traffic_scenarios.json")
 rep = int(os.environ.get("REP", 0))
 REPLAY_DIR = str(BASE_DIR / "recordings/rep1/record/fps_20_highquality_True")
+
 
 #FPS 
 FPS = 20
@@ -102,9 +104,13 @@ def initialize_checkpoint(path):
 # runner
 # ---------------------------------------------------
 
+
 class ReplayADSRunner:
 
-    def __init__(self, agent_path, agent_config, route_index, replay_file, subset, statistics_manager):
+    def __init__(self, agent_path, agent_config, route_index, replay_file, subset, statistics_manager, config=None):
+
+
+
 
         self.route_index = route_index
         self.agent_path = agent_path
@@ -114,6 +120,7 @@ class ReplayADSRunner:
         self.statistics_manager = statistics_manager
         self.sensor_interface = SensorInterface()
         self.replay_actor_ids = set()
+        self.config = config
 
 
 # ---------------------------------------------------
@@ -133,6 +140,8 @@ class ReplayADSRunner:
         print("Loading town:", town)
 
         self.world = self.client.load_world(town)
+
+
                              
                              
         
@@ -142,6 +151,7 @@ class ReplayADSRunner:
 
         CarlaDataProvider.set_client(self.client)
         CarlaDataProvider.set_world(self.world)
+
 
         #deterministic settings
         settings = self.world.get_settings()
@@ -154,12 +164,10 @@ class ReplayADSRunner:
         self.client.set_replayer_ignore_hero(True)
         
         self.client.replay_file(self.replay_file, 0, 0, 0)
-        
+ 
+  
         for _ in range(1):
             self.world.tick()
-            
-        
-            
 
         print("[experiment_runner] Replay actors spawned")
         # store replay actor ids
@@ -328,7 +336,7 @@ class ReplayADSRunner:
 
         CarlaDataProvider.set_client(self.client)
         CarlaDataProvider.set_world(self.world)
-
+  
         self.route_config.index = self.route_index
 
         self.statistics_manager.set_route(
@@ -365,9 +373,15 @@ class ReplayADSRunner:
         self.remove_scenario_actors()
         self.remove_non_replay_actors()
         time.sleep(5)
+
         for _ in range(10):
             self.world.tick()   
 
+        #modification input
+
+        if self.config:
+            configure_environment(self.world, self.config)
+       
         # register scenario for statistics
         self.statistics_manager.set_scenario(self.manager.scenario)
 
@@ -437,7 +451,23 @@ def prepare_run_dirs():
 # main
 # ---------------------------------------------------
 
+
 def main():
+
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--modify", action="store_true", help="Apply environment modifications")
+    parser.add_argument("--config-file", type=str, default="config.json")
+
+   
+    args, unknown = parser.parse_known_args()
+    if args.modify:
+        print("[CONFIG] Modification enabled")
+        config = read_config(args.config_file)
+    else:
+        print("[CONFIG] Modification disabled")
+        config = None
 
     agent_path = os.environ["TEAM_AGENT"]
     agent_config = os.environ["TEAM_CONFIG"]
@@ -464,13 +494,15 @@ def main():
 
 
         runner = ReplayADSRunner(
-            agent_path,
-            agent_config,
-            route_counter,
-            replay_file,
-            subset,
-            statistics_manager
-        )
+        agent_path,
+        agent_config,
+        route_counter,
+        replay_file,
+        subset,
+        statistics_manager,
+        config  
+    )
+
         
         runner.setup_and_start_replay()
         runner.remove_non_replay_actors()
@@ -485,3 +517,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

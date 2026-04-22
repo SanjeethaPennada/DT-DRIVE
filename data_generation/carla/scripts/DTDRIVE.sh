@@ -15,7 +15,7 @@ mkdir -p data-bucket/
 for i in $(seq 0 9)
 do
     # Run evaluation in EPIC mode in 20FPS (the default)
-    ./scripts/start_dtdrive_experiment.sh True 20
+    ./scripts/start_dtdrive_experiment.sh True 20 "$@"
     
     # save results to data bucket
     mkdir -p data-bucket/rep$i/
