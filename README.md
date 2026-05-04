@@ -37,7 +37,7 @@ DT-DRIVE/
 - nvidia driver
 - CARLA 0.9.10.1
   
-![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/dtdrive.jpg)
+![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/DT-Drive.jpg)
 
 # DT-DRIVE TOOL 
 The `data_generation` directory contains scripts used to generate replay logs for 132 CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. The script `ids.py` is used to extract all the street light entities surrounding the ego vehicle within user-specified radius into a .json file, and the script `config.py` is the modification file that lists the entities that needs to be toggled and the weather conditions that needs to be applied in order to run the scenario deterministically in modifed world. The script `ids.py` extracts all streetlight entities surrounding the ego vehicle within a user-specified radius and saves them to a .json file. The script `config.py` serves as a configuration module that contains the entities to be toggled and defines the weather/time conditions required to run the scenario deterministically in a modified world.
