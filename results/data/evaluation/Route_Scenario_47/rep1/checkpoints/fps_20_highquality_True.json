@@ -1,0 +1,104 @@
+{
+    "_checkpoint": {
+        "global_record": {
+            "index": -1,
+            "infractions": {
+                "collisions_layout": 0.0,
+                "collisions_pedestrian": 0.0,
+                "collisions_vehicle": 11.417605864620292,
+                "outside_route_lanes": 0.0,
+                "red_light": 0.0,
+                "route_dev": 0.0,
+                "route_timeout": 0.0,
+                "stop_infraction": 0.0,
+                "vehicle_blocked": 0.0
+            },
+            "meta": {
+                "duration_game": 107.00000159442425,
+                "duration_system": 96.69563508033752,
+                "total_length": 525.5042143810714
+            },
+            "route_id": -1,
+            "scores": {
+                "score_composed": 4.6655999999999995,
+                "score_penalty": 0.046655999999999996,
+                "score_route": 100.0
+            },
+            "scores_std_dev": {
+                "score_composed": "NaN",
+                "score_penalty": "NaN",
+                "score_route": "NaN"
+            },
+            "status": "Completed"
+        },
+        "progress": [
+            0,
+            1
+        ],
+        "records": [
+            {
+                "index": 0,
+                "infractions": {
+                    "collisions_layout": [],
+                    "collisions_pedestrian": [],
+                    "collisions_vehicle": [
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=13377 at (x=-47.357, y=-221.142, z=0.034)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=13377 at (x=-71.925, y=-192.386, z=0.034)",
+                        "Agent collided against object with type=vehicle.bmw.grandtourer and id=13377 at (x=-93.879, y=-171.048, z=0.033)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=13387 at (x=-128.838, y=-139.751, z=0.034)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=13387 at (x=-155.414, y=-123.536, z=0.034)",
+                        "Agent collided against object with type=vehicle.bmw.isetta and id=13387 at (x=-197.844, y=-102.723, z=0.034)"
+                    ],
+                    "outside_route_lanes": [],
+                    "red_light": [],
+                    "route_dev": [],
+                    "route_timeout": [],
+                    "stop_infraction": [],
+                    "vehicle_blocked": []
+                },
+                "meta": {
+                    "duration_game": 107.00000159442425,
+                    "duration_system": 96.69563508033752,
+                    "route_length": 525.5042143810714
+                },
+                "route_id": "RouteScenario_47",
+                "scores": {
+                    "score_composed": 4.6655999999999995,
+                    "score_penalty": 0.046655999999999996,
+                    "score_route": 100.0
+                },
+                "status": "Completed"
+            }
+        ]
+    },
+    "eligible": false,
+    "entry_status": "Finished with missing data",
+    "labels": [
+        "Avg. driving score",
+        "Avg. route completion",
+        "Avg. infraction penalty",
+        "Collisions with pedestrians",
+        "Collisions with vehicles",
+        "Collisions with layout",
+        "Red lights infractions",
+        "Stop sign infractions",
+        "Off-road infractions",
+        "Route deviations",
+        "Route timeouts",
+        "Agent blocked"
+    ],
+    "values": [
+        "4.666",
+        "100.000",
+        "0.047",
+        "0.000",
+        "11.418",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000",
+        "0.000"
+    ]
+}
