@@ -2,7 +2,7 @@
 
 (Submitted to ASE 2026 (under review))
 
-DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 132 scenarios using TransFuser++ successfully. We have also tested the tool by running 2 ADSs in same and modified deterministic CARLA world.  
+DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 128 scenarios using TransFuser++ successfully. We have also tested the tool by running 2 ADSs in same and modified deterministic CARLA world.
 
 ## Directory structure overview:
 ```
@@ -10,7 +10,7 @@ DT-DRIVE/
 ├─ data_generation/
 │  ├─ carla/
 │  │  ├─ recordings/
-│  │  │  ├─ record/          # Recorded CARLA Replay logs of all 132 scenarios 
+│  │  │  ├─ record/          # Recorded CARLA Replay logs of all 128 scenarios
 │  │  ├─ scripts/
 │  │  │  ├─ RECORD.sh/       # Generates replay logs when input is json file
 │  │  │  ├─ DTDRIVE.sh/      # Run DET DRIVE when input is a log file
@@ -40,7 +40,7 @@ DT-DRIVE/
 ![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/DT-Drive.jpg)
 
 # DT-DRIVE TOOL 
-The `data_generation` directory contains scripts used to generate replay logs for 132 CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. The script `ids.py` is used to extract all the street light entities surrounding the ego vehicle within user-specified radius into a .json file, and the script `config.py` is the modification file that lists the entities that needs to be toggled and the weather conditions that needs to be applied in order to run the scenario deterministically in modifed world. The script `ids.py` extracts all streetlight entities surrounding the ego vehicle within a user-specified radius and saves them to a .json file. The script `config.py` serves as a configuration module that contains the entities to be toggled and defines the weather/time conditions required to run the scenario deterministically in a modified world.
+The `data_generation` directory contains scripts used to generate replay logs for 128 CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. The script `ids.py` is used to extract all the street light entities surrounding the ego vehicle within user-specified radius into a .json file, and the script `config.py` is the modification file that lists the entities that needs to be toggled and the weather conditions that needs to be applied in order to run the scenario deterministically in modifed world. The script `ids.py` extracts all streetlight entities surrounding the ego vehicle within a user-specified radius and saves them to a .json file. The script `config.py` serves as a configuration module that contains the entities to be toggled and defines the weather/time conditions required to run the scenario deterministically in a modified world.
 
 ### Experimental pipeline
 
