@@ -4,7 +4,10 @@
 
 DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 128 scenarios using TransFuser++ successfully. We have also tested the tool by running 2 ADSs in same and modified deterministic CARLA world.
 
-## Directory structure overview:
+## Overview:
+
+### Project Structure
+
 ```
 DT-DRIVE/
 ├─ data_generation/
@@ -25,14 +28,23 @@ DT-DRIVE/
 │  │  │  ├─ determinism.py/  # Deterministic evaluation analysis after running DTDRIVE.sh
 ```
 
-## Prerequisites
+### DT-Drive tool
 
-### Hardware
-- GPU: NVIDIA Corporation
+The `data_generation` directory contains scripts used to generate replay logs for 128 CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. The script `ids.py` is used to extract all the street light entities surrounding the ego vehicle within user-specified radius into a .json file, and the script `config.py` is the modification file that lists the entities that needs to be toggled and the weather conditions that needs to be applied in order to run the scenario deterministically in modifed world. The script `ids.py` extracts all streetlight entities surrounding the ego vehicle within a user-specified radius and saves them to a .json file. The script `config.py` serves as a configuration module that contains the entities to be toggled and defines the weather/time conditions required to run the scenario deterministically in a modified world.
+
+
+## Getting Started
+
+DT-Drive can be run natively on a host machine, or within a Docker container. The following hardware and software requirements are needed to run DT-DRIVE:
+
+### Native setup
+
+#### Hardware prerequisites
+- GPU: NVIDIA
 - Memory: 16GB+
 - Storage: 100GB+
 
-### Software
+#### Software prerequisites
 - Ubuntu 20.04+
 - nvidia drivers
 - CARLA 0.9.10.1
@@ -40,10 +52,8 @@ DT-DRIVE/
   
 ![alt text](https://github.com/SanjeethaPennada/DT-DRIVE/blob/main/DT-Drive.jpg)
 
-# DT-DRIVE TOOL 
-The `data_generation` directory contains scripts used to generate replay logs for 128 CARLA leaderboard scenarios. The script: `RECORD.sh` runs TransFuser++ on CARLA Leaderboard routes using scenario description files (.json) and records simulation logs (.log) of all the scenarios. These logs are later used to evaluate ADS under deterministic replay conditions. For the experiments reported in the paper, CARLA was run using: 20 FPS simulation rate. The script: `DTDRIVE.sh` runs DT-DRIVE to evaluate TransFuser++ in a fully deterministic replay environment using the previously recorded scenarios. We have also tested DT-DRIVE using two ADSs: TransFuser++ and TransFuser  during the evaluation. The script `start_dtdrive_experiment.sh` is used to switch between these two ADSs during the experiments. The script `ids.py` is used to extract all the street light entities surrounding the ego vehicle within user-specified radius into a .json file, and the script `config.py` is the modification file that lists the entities that needs to be toggled and the weather conditions that needs to be applied in order to run the scenario deterministically in modifed world. The script `ids.py` extracts all streetlight entities surrounding the ego vehicle within a user-specified radius and saves them to a .json file. The script `config.py` serves as a configuration module that contains the entities to be toggled and defines the weather/time conditions required to run the scenario deterministically in a modified world.
 
-### Get started
+#### Data Generation
 
 ```bash
 cd ./data_generation/carla
@@ -75,8 +85,47 @@ conda activate tfuse
 # DT-Drive Deterministic Replay + Modify
 ./scripts/DTDRIVE.sh --modify --config-file ./scripts/config.json 
 ```
+Please proceed to the `Results` section to analyze the results of the experiments.
 
-## Results
+### Docker setup (experimental)
+
+#### Hardware prerequisites
+- GPU: NVIDIA
+- Memory: 16GB+
+- Storage: 100GB+
+
+#### Software prerequisites
+- Ubuntu 20.04+
+- Docker (with Docker compose)
+- NVIDIA Container Toolkit
+
+
+### Data Generation
+
+```bash
+# Build the Docker image and run the all-in-one container
+docker compose run --name dt-drive --remove-orphans dt-drive /bin/bash
+
+# Inside the container, run the experiments using the same commands as in the native setup
+conda activate garage
+# DT-Drive Record
+./scripts/RECORD.sh 
+
+# DT-Drive Deterministic Replay
+./scripts/DTDRIVE.sh
+
+# DT-Drive Deterministic Replay + Modify
+./scripts/DTDRIVE.sh --modify --config-file ./scripts/config.json 
+
+
+# Copy the results from the container to the host machine (after running the experiments)
+docker cp dt-drive:/workspace/DT-DRIVE/data_generation/carla/recordings ./results
+docker cp dt-drive:/workspace/DT-DRIVE/data_generation/carla/data-bucket ./results
+
+
+```
+
+### Results
 The `results/notebooks` directory has the scripts to load the evaluation data and generate figures used in the paper.
 To inspect determinism of scenario evaluations run `determinism.py` and provide path to scenario evaluation points do directory with evaluation results for example:
 ```bash
@@ -87,6 +136,7 @@ python ./notebooks/determinism.py ./data/evaluation/dt_drive_TransFuser/Route_Sc
 python ./notebooks/determinism.py ./data/evaluation/dt_drive_TransFuser++_modify/Route_Scenario_36 #TransFuser++ Scenario 36 result in modified  deterministic world
 python ./notebooks/determinism.py ./data/evaluation/dt_drive_TransFuser_modify/Route_Scenario_36 #TransFuser Scenario 36 result in modified  deterministic world
 ```
+
 
 ## Funding
 This research was funded by the Engineering and Physical Sciences Research Council (EPSRC) through UK Research and Innovation (Project Reference: EP/Y014219/1)
