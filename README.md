@@ -1,4 +1,4 @@
-# DT-DRIVE: A Tool for Deterministic Replay-Based Testing of Autonomous Driving Systems 
+# DT-DRIVE: A Tool for Deterministic Replay-Based Testing and Debugging of Autonomous Driving Systems 
 
 (Submitted to ASE 2026 (under review))
 
