@@ -1,0 +1,17 @@
+services:
+  dt-drive:
+    container_name: dt-drive
+    build: .
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - SDL_VIDEODRIVER=offscreen
+      - OFFSCREEN=True
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+    network_mode: "host"
