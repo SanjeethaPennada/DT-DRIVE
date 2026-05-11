@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#This generates ids surrounding the ego vehicle within 50m radius. All the ids along with traffic light ids are saved in output.json file and their locations in location.json file.
+#This generates ids surrounding the ego vehicle within 20m radius. All the ids are saved in .json file.
 #Even though this study did not use traffic light ids, but have included for future work. 
 
 import glob
