@@ -1,5 +1,5 @@
 # DT-DRIVE: A Tool for Deterministic Replay-Based Testing and Debugging of Autonomous Driving Systems 
-(Submitted to ASE 2026 (under review)) - [![DOI](https://zenodo.org/badge/1170679719.svg)](https://doi.org/10.5281/zenodo.20120808)
+(Accepted at ASE 2026 tools track) 
 
 DT-DRIVE is a framework for testing multiple Autonomous Driving Systems (ADS) in a fully deterministic simulation environment. The framework enables replay-based testing by replacing the ego vehicle in recorded CARLA simulations with an autonomous driving agent(s). This repository contains scripts and tools to test multiple ADS in deterministic replay environment using scenario description or recorded binary files in CARLA simulator. We have validated 128 scenarios using TransFuser++ successfully. We have also tested the tool by running 2 ADSs in same and modified deterministic CARLA world.
 
